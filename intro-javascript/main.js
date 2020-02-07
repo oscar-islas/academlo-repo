@@ -32,6 +32,7 @@ await, break, case, catch, class, const, continue, debugger, default, delete, do
 var primerNumero = 3;
 function sumarDosNumeros(num1, num2){
     console.log(num1+num2);
+    
 }
 
 function imprimirConsola(){
