@@ -1,0 +1,24 @@
+.container{
+    display: grid;
+
+    /* grid-template-columns: 200px 30% 200px; */
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 2fr 1fr;
+    height: 600px;
+    row-gap: 20px;
+    column-gap: 50px;
+}
+
+.item{
+    background-color: #c1c1c1;
+    text-align: center;
+}
+
+.rojo{
+    background-color: red;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
