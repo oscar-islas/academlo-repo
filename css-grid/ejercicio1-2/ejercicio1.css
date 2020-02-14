@@ -1,0 +1,157 @@
+body{
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.contenedor{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 600px;
+}
+
+.item{
+    border: solid 1px #c1c1c1;
+    text-align: center;
+    background-color: #5987f5;;
+}
+
+.item:first-child{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: #84e4d2;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item:nth-child(2){
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: #d05757;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+}
+
+.item:nth-child(3){
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: #57aed0;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    background: url(red-fox.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.item:nth-child(3):after{
+    content: "";
+    position: absolute;
+    background-color: #0000007a;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.item:nth-child(3) h2, .item:nth-child(3) p{
+    z-index: 2;
+}
+
+.item:nth-child(4){
+    background-color: #57aed0;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    color: #FFF;
+    background: url(pug.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+}
+
+.item:nth-child(4):after{
+    content: "";
+    position: absolute;
+    background-color: #0000007a;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0px;
+}
+
+.item:nth-child(4) h2{
+    z-index: 2;
+}
+
+.item:nth-child(5){
+    background-color: #57aed0;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    color: #FFF;
+    background: url(raccoon.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.item:nth-child(5):after{
+    content: "";
+    position: absolute;
+    background-color: #0000007a;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.item:nth-child(5) h2{
+    z-index: 2;
+}
+
+.item:nth-child(6){
+    background-color: #57aed0;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    color: #FFF;
+    background: url(cat.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.item:nth-child(6):after{
+    content: "";
+    position: absolute;
+    background-color: #0000007a;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0px;
+}
+
+.item:nth-child(6) h2, .item:nth-child(6) p{
+    z-index: 2;
+}
+
