@@ -1,0 +1,18 @@
+{
+  "name": "ejemplo-express",
+  "version": "1.0.0",
+  "description": "Aplicación usando node y express",
+  "main": "index.js",
+  "author": "Oscar Islas",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
