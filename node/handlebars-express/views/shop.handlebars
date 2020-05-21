@@ -1,0 +1,15 @@
+<h1>Productos destacados</h1>
+<ul>
+    {{!-- let productos = [{nombre: "Tenis Nike", medida: "M"},{nombre: "Xbox one", medida: "no medida"}, {nombre: "Playera Adidas", medida: "S"}]; --}}
+    {{#each productos}} 
+    {{!-- 1. this => {nombre: "Tenis Nike", medida: "M"}
+    2. this => {nombre: "Xbox one", medida: "no medida"}
+    3. this.nombre => "Playera Adidas" --}}
+    {{#if this.cambiaColor}}
+    <li style="color: red">{{this.nombre}} - {{this.medida}}</li>
+    {{ else }}
+    <li style="color:green">{{this.nombre}} - {{this.medida}}</li>
+    {{/if}}
+    {{/each}}
+</ul>
+<h1>Productos en oferta</h1>
