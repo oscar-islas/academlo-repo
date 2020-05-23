@@ -1,0 +1,30 @@
+body{
+  padding: 0;
+  margin: 0;
+}
+
+.App{
+  display: flex;
+  height: 50vh;
+}
+
+.App .register{
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.App .login{
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.App .login > form {
+  display: flex;
+  flex-direction: column;
+}
