@@ -1,0 +1,1 @@
+[{"id":0,"nombre":"Tenis Adidas","categoria":"Deportes","descripcion":"Tenis adidas del numero 28","precio":"$500","imagen":"https://www.eluniversal.com.mx/sites/default/files/styles/f03-651x400/public/2019/03/11/adidas_x_game_of_thrones_house_lannister_ultraboost_shoes_red_ee3710_01_standard.jpg"}]
