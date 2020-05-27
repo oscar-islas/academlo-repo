@@ -1,17 +1,32 @@
 <div class="row">
+    {{!-- 1. Agregar un input para poder buscar todos los productos que coincidan con un nombre --}}
+</div>
+
+<div class="row">
+    <form action="/search" method="get">
+        <input type="text" name="s" />
+        <input type="text" name="otherval" />
+        <button type="submit">Buscar</button>
+    </form>    
+</div>
+
+<div class="row">
 {{#each products}}
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-            <a href="#"><img class="card-img-top" src={{imagen}} alt=""></a>
+            <a href="#"><img class="card-img-top" src={{imgUrl}} alt=""></a>
             <div class="card-body">
             <h4 class="card-title">
-                <a href="#">{{nombre}}</a>
+                <a href="#">{{name}}</a>
             </h4>
-            <h5>{{precio}}</h5>
-            <p class="card-text">{{descripcion}}</p>
+            <h5>{{price}}</h5>
+            <p class="card-text">{{description}}</p>
             </div>
             <div class="card-footer">
-            
+                <form action="/delete-product/{{id}}" method="POST">
+                    <button type="submit">Borrar</button>
+                </form>
+                {{!-- 2. Agregar botón de editar producto --}}
             </div>
         </div>
     </div>

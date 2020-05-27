@@ -1,0 +1,10 @@
+<h1>Editar un producto</h1>
+<form action="/edit-product/{{id}}" method="POST">
+    <input name="id" type="hidden" value='{{id}}'>
+    <input type="text" placeholder="nombre" name="name" value='{{name}}' />
+    <input type="text" placeholder="categoria" name="category" value='{{category}}' />
+    <input type="text" placeholder="descripción" name="description" value='{{description}}' />
+    <input type="text" placeholder="precio" name="price" value='{{price}}' />
+    <input type="text" placeholder="url de imagen" name="imgUrl" value='{{imgUrl}}' />
+    <button type="submit">Guardar cambios</button>
+</form>

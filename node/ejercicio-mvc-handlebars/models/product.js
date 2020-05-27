@@ -2,13 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 class Product {
-    constructor(id, nombre, precio, categoria, descripcion, imagen){
+    constructor(id, name, price, category, description, imgUrl){
         this.id = id;
-        this.nombre = nombre;
-        this.categoria = categoria;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.imagen = imagen;
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
 
     getProduct(){

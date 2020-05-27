@@ -4,9 +4,16 @@ const router = express.Router();
 
 router.get('/', productController.getProducts);
 router.get('/add-product', productController.addProduct);
-router.get('/next-id', productController.getNextId);
-router.get('/edit-product/:id', productController.addProduct); //1. Editar - completar esta ruta con el controlador que le correspone
+router.get('/edit-product/:id', productController.postEditProduct); 
+router.post('/edit-product/:id', productController.updateProduct); 
 router.post('/add-product', productController.saveProduct);
-router.post('/delete-product/:id', productController.addProduct); //2. Borrar - Completar esta ruta con el controlador que le correspone
+router.post('/delete-product/:id', productController.postDeleteProduct); 
+/* 3. Agregar una ruta que pueda mostrar el detalle del producto, 
+ *  pueden tomar como referencia el siguiente 
+ *  template para crear la vista https://startbootstrap.com/templates/shop-item/ 
+*/
+
+//4. Agregar la ruta para mostrar todas las coincidencias para el producto buscado
+
 
 module.exports = router;

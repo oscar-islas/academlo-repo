@@ -32,17 +32,39 @@ const getNextId = async (req, res) => {
     res.send(`<h1>${id}</h1>`);
 }
 
-const postEditProduct = (req, res) => {
+const postEditProduct = async (req, res) => {
     //5. Llamar al método que permita editar el producto y al final redireccionar a home 
+    let {name, description, price, imgUrl, category} = await shop.getProductById(req.params.id);
+    res.render('edit-product', {id: req.params.id, name, description, price, imgUrl, category});
 }
 
-const postDeleteProduct = (req, res) => {
-    //6. Llamar al método que permita borrar el producto y al final redireccionar a home 
+const updateProduct = async (req, res) => {
+    try{
+        let productObj = {...req.body};
+        let id = req.params.id;
+        await shop.editProduct(productObj, id);
+        res.redirect('/');
+    }catch(err){
+        console.log(err);
+    }
 }
+
+const postDeleteProduct = async (req, res) => {
+    //6. Llamar al método que permita borrar el producto y al final redireccionar a home 
+    await shop.deleteProduct(req.params.id);
+    res.redirect('/');
+}
+
+// 5. Crear el controlador para mostrar una vista para todos los productos que cumplan con el criterio de busqueda
+// 6. Crear el controlador para mostrar el detalle de la vista
+
 
 module.exports = {
     getProducts,
     addProduct,
+    postEditProduct,
+    updateProduct,
     saveProduct,
+    postDeleteProduct,
     getNextId
 }

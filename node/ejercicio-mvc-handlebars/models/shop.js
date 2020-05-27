@@ -5,7 +5,7 @@ class Shop {
 
     getAll(){
         return new Promise((resolve, reject) => {
-            fs.readFile(path.join(__dirname, "..", "text.txt"), (err, data) => {
+            fs.readFile(path.join(__dirname, "..", "text.json"), (err, data) => {
                 if(err){
                     reject(err);
                 }else{
@@ -14,6 +14,20 @@ class Shop {
                 }
             })
         }) 
+    }
+
+    getProductById(id){
+        return new Promise( async (resolve, reject) => {
+            try{
+                let products = await this.getAll();
+                //Regresaríamos el objeto que coincida con el id
+                let product = products.find( productObj => Number(productObj.id) === Number(id));
+                resolve(product);
+            }catch(err){
+                reject(err);
+            }
+        })
+        
     }
 
     nextId(){
@@ -32,7 +46,7 @@ class Shop {
         return new Promise((resolve, reject) => {
             this.getAll().then( products => {
                 let newProducts = [...products, product];
-                fs.writeFile(path.join(__dirname, "..", "text.txt"), JSON.stringify(newProducts), (err) => {
+                fs.writeFile(path.join(__dirname, "..", "text.json"), JSON.stringify(newProducts), (err) => {
                     if(err){
                         reject(err);
                     }
@@ -43,16 +57,37 @@ class Shop {
     }
 
     editProduct(product, id){
-        //3. Método para actualizar un producto respecto a su id
-        //arreglo.find(() => {})
-        //arreglo.findIndex(() => {})
+        product.id = Number(product.id);
+        return new Promise(async (resolve, reject) => {
+            //Obtener la posicion en la que se encuentra mi producto en el arreglo 
+            let products = await this.getAll();
+            let indexProduct = products.findIndex( productObj => Number(productObj.id) === Number(id));
+            products[indexProduct] = product; //Remplazando el producto en la posición n por el producto modificado
+            fs.writeFile(path.join(__dirname, "..", "text.json"), JSON.stringify(products), (err) => {
+                if(err){
+                    reject(err) 
+                } 
+                resolve(true);
+            });
+        })
     }
 
     deleteProduct(id){
-        //4. Método para borrar un producto respecto a su id 
-        //arreglo.find(() => {})
-        //arreglo.findIndex(() => {})
+        return new Promise(async (resolve, reject) => {
+            //Obtener la posicion en la que se encuentra mi producto en el arreglo 
+            let products = await this.getAll();
+            let indexProduct = products.findIndex( productObj => Number(productObj.id) === Number(id));
+            products.splice(indexProduct, 1);
+            fs.writeFile(path.join(__dirname, "..", "text.json"), JSON.stringify(products), (err) => {
+                if(err){
+                    reject(err) 
+                } 
+                resolve(true);
+            });
+        })
     }
+
+    //7. Método para poder obtener todos los productos que coincidan con la búsqueda 
 }
 
 const shopObj = new Shop();
