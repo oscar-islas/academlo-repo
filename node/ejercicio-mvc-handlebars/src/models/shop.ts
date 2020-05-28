@@ -1,51 +1,51 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import Product from '../models/product';
 
-class Shop <T>{
+class Shop{
 
-    getAll():Promise<Array<T>>{
+    getAll():Promise<Array<Product>>{
         return new Promise((resolve, reject) => {
-            fs.readFile(path.join(__dirname, "..", "text.json"), (err:string, data: string) => {
+            fs.readFile(path.join(__dirname, "..", "text.json"), (err: Error | null, data: string | Buffer) => {
                 if(err){
                     reject(err);
                 }else{
-                    const products = JSON.parse(data);
+                    const products = JSON.parse(data.toString());
                     resolve(products);
                 }
             })
         }) 
     }
-
-    getProductById(id:number):Promise<Array<T>>{
+    
+    getProductById(id:number):Promise<Product | any>{
         return new Promise( async (resolve, reject) => {
             try{
                 let products = await this.getAll();
                 //Regresaríamos el objeto que coincida con el id
-                let product = products.find( productObj => Number(productObj.id) === Number(id));
+                let product = products.find( (productObj: Product | any) => { return productObj.id === id });
                 resolve(product);
             }catch(err){
                 reject(err);
             }
-        })
-        
+        })        
     }
 
-    nextId(){
+    nextId():Promise<number>{
         return new Promise((resolve, reject) => {
-            this.getAll().then( products => {
-                if(products.length === 0){
+            this.getAll().then((product:Array<Product>) => {
+                if(product.length === 0){
                     resolve(0);
                 }else{
-                    resolve(products[products.length - 1].id + 1);
+                    resolve(product[product.length - 1].id + 1);
                 }
-            }).catch( error => reject(err));
+            }).catch( error => reject(error));
         })
     }
 
-    saveProduct(product){
+    saveProduct(product: Product):Promise<boolean>{
         return new Promise((resolve, reject) => {
             this.getAll().then( products => {
-                let newProducts = [...products, product];
+                let newProducts:Array<Product> = [...products, product];
                 fs.writeFile(path.join(__dirname, "..", "text.json"), JSON.stringify(newProducts), (err) => {
                     if(err){
                         reject(err);
@@ -56,12 +56,12 @@ class Shop <T>{
         }) 
     }
 
-    editProduct(product, id){
+    editProduct(product: Product, id: number):Promise<boolean>{
         product.id = Number(product.id);
         return new Promise(async (resolve, reject) => {
             //Obtener la posicion en la que se encuentra mi producto en el arreglo 
-            let products = await this.getAll();
-            let indexProduct = products.findIndex( productObj => Number(productObj.id) === Number(id));
+            let products:Array<Product> = await this.getAll();
+            let indexProduct:number = products.findIndex( productObj => Number(productObj.id) === Number(id));
             products[indexProduct] = product; //Remplazando el producto en la posición n por el producto modificado
             fs.writeFile(path.join(__dirname, "..", "text.json"), JSON.stringify(products), (err) => {
                 if(err){
@@ -72,11 +72,11 @@ class Shop <T>{
         })
     }
 
-    deleteProduct(id){
+    deleteProduct(id: number):Promise<boolean>{
         return new Promise(async (resolve, reject) => {
             //Obtener la posicion en la que se encuentra mi producto en el arreglo 
-            let products = await this.getAll();
-            let indexProduct = products.findIndex( productObj => Number(productObj.id) === Number(id));
+            let products:Array<Product> = await this.getAll();
+            let indexProduct:number = products.findIndex( productObj => Number(productObj.id) === id);
             products.splice(indexProduct, 1);
             fs.writeFile(path.join(__dirname, "..", "text.json"), JSON.stringify(products), (err) => {
                 if(err){
@@ -90,4 +90,4 @@ class Shop <T>{
 
 const shopObj = new Shop();
 
-module.exports = shopObj;
+export default shopObj;

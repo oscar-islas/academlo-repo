@@ -6,3 +6,14 @@
 body {
   padding-top: 56px;
 }
+
+.card-img-top{
+  object-fit: contain;
+  width: 100%;
+  display: block;
+  max-height: 200px;
+}
+
+.form-prices{
+  margin: 10px 0px;
+}

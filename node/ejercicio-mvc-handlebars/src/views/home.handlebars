@@ -1,33 +1,66 @@
 <div class="row">
-    {{!-- 1. Agregar un input para poder buscar todos los productos que coincidan con un nombre --}}
-</div>
-
-<div class="row">
-    <form action="/search" method="get">
-        <input type="text" name="s" />
-        <button type="submit">Buscar</button>
-    </form>    
-</div>
-
-<div class="row">
-{{#each products}}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src={{imgUrl}} alt=""></a>
-            <div class="card-body">
-            <h4 class="card-title">
-                <a href="/detail-product/{{id}}">{{name}}</a>
-            </h4>
-            <h5>{{price}}</h5>
-            <p class="card-text">{{description}}</p>
+    <div class="col-md-3">
+        <h5>Buscar Productos</h5>
+        <form action="/search" method="get" style="margin-bottom: 10px;">
+            <div class="form-group">
+                <input type="text" name="s" />
             </div>
-            <div class="card-footer">
-                <form action="/delete-product/{{id}}" method="POST">
-                    <button type="submit">Borrar</button>
-                </form>
-                <a href="/edit-product/{{id}}">Editar</a>
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </form>
+        <form method="GET">            
+            <div>
+                <h5>Ordenar Productos</h5>
+                <div class="form-group">
+                    <select id="inputState" class="form-control" name="price">
+                        <option value="mayor">Mayor Precio</option>
+                        <option >Menor Precio</option>
+                    </select>
+                </div>
             </div>
+            <div>
+                <h5>Categorías</h5>
+                <p><a>Deportes (2)</a></p>                
+            </div>
+            <div class="form-group">
+                <h5>Precio</h5>
+                <div class="form-row align-items-center">
+                    <div class="col-auto form-prices">
+                        <label class="sr-only" for="inlineFormInputGroup">Mínimo</label>
+                        <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="Desde" name="desde">
+                    </div>                    
+                    <div class="col-auto form-prices">
+                        <label class="sr-only" for="inlineFormInputGroup">Máximo</label>
+                        <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="Hasta" name="hasta">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Aplicar</button>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <h3>Todos los productos</h3>
+        <p>2 Resultados</p>
+        <div class="row">
+            {{#each products}}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src={{imgUrl}} alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="/detail-product/{{id}}">{{name}}</a>
+                        </h4>
+                        <h5>{{price}}</h5>
+                        <p class="card-text">{{description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <form action="/delete-product/{{id}}" method="POST">
+                            <button type="submit">Borrar</button>
+                        </form>
+                        <a href="/edit-product/{{id}}">Editar</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
         </div>
     </div>
-{{/each}}
 </div>

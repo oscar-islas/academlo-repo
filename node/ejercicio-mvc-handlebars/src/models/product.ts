@@ -1,8 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-
 class Product {
-    constructor(id, name, price, category, description, imgUrl){
+    id: number;
+    name: string;
+    price: number;
+    category: string;
+    description: string;
+    imgUrl: string;
+
+    constructor(id:number, name:string, price:number, category:string, description:string, imgUrl:string){
         this.id = id;
         this.name = name;
         this.category = category;
@@ -10,10 +14,6 @@ class Product {
         this.price = price;
         this.imgUrl = imgUrl;
     }
-
-    getProduct(){
-        return this;
-    }
 }
 
-module.exports = Product;
+export default Product;

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon build/index.js",
-    "copyfiles": "cp -rv src/views build/ && cp -rv src/public build/ && cp src/text.json build/",
+    "copyfiles": "copyfiles -u 1 src/views/**/* build && copyfiles -u 1 src/public/**/* build && copyfiles -u 1 src/text.json build",
     "build": "tsc --watch --preserveWatchOutput",
     "dev": "concurrently \"npm run build\" \"npm run copyfiles\" \"npm start\""
   },
@@ -16,7 +16,9 @@
     "express-handlebars": "^4.0.4"
   },
   "devDependencies": {
+    "@types/express-handlebars": "^3.1.0",
     "concurrently": "^5.2.0",
+    "copyfiles": "^2.3.0",
     "nodemon": "^2.0.4",
     "typescript": "^3.9.3"
   }
