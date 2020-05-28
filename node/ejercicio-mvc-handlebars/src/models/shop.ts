@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-class Shop {
+class Shop <T>{
 
-    getAll(){
+    getAll():Promise<Array<T>>{
         return new Promise((resolve, reject) => {
-            fs.readFile(path.join(__dirname, "..", "text.json"), (err, data) => {
+            fs.readFile(path.join(__dirname, "..", "text.json"), (err:string, data: string) => {
                 if(err){
                     reject(err);
                 }else{
@@ -16,7 +16,7 @@ class Shop {
         }) 
     }
 
-    getProductById(id){
+    getProductById(id:number):Promise<Array<T>>{
         return new Promise( async (resolve, reject) => {
             try{
                 let products = await this.getAll();
@@ -86,8 +86,6 @@ class Shop {
             });
         })
     }
-
-    //7. Método para poder obtener todos los productos que coincidan con la búsqueda 
 }
 
 const shopObj = new Shop();

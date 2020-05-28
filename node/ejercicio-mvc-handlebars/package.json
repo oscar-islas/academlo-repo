@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon build/index.js",
-    "copyfiles": "cp src/views /build; cp src/public /build",
+    "copyfiles": "cp -rv src/views build/ && cp -rv src/public build/ && cp src/text.json build/",
     "build": "tsc --watch --preserveWatchOutput",
-  "dev": "concurrently \"npm run build\" \"npm run copyfiles\" \"npm start\""
+    "dev": "concurrently \"npm run build\" \"npm run copyfiles\" \"npm start\""
   },
   "license": "MIT",
   "dependencies": {

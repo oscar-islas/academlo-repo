@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import expressHBS from 'express-handlebars';
 import shopRoutes from './routes/shopRoutes';
 const app = express();
@@ -6,8 +7,9 @@ const app = express();
 app.engine('handlebars', expressHBS());
 app.set('view engine', 'handlebars');
 
-app.use(express.urlencoded({ extended: true })); //
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.set('views', path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Midleware => shop
 app.use(shopRoutes);

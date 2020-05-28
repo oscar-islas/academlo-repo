@@ -1,9 +1,10 @@
-const Product = require('../models/product');
+import Product from '../models/product';
 const path = require('path');
 const product = require('../models/product');
 const shop = require('../models/shop');
+import {Request, Response} from 'express';
 
-const getProducts = async (req, res) => {
+const getProducts = async (req:Request, res:Response) => {
     try{
         let products = await shop.getAll();
         res.render('home', {pageTitle: "Inicio | Bienvenida", products: products });
@@ -12,12 +13,12 @@ const getProducts = async (req, res) => {
     }
 };
 
-const addProduct = (req, res) => {
+const addProduct = (req:Request, res:Response) => {
     console.log(req.params.id); //Para obtener el parametro que viene con la url
     res.render('add-product', {pageTitle: "Agregar Producto"});
 }
 
-const saveProduct = async (req, res) => {
+const saveProduct = async (req:Request, res:Response) => {
     let id = await shop.nextId();
     let {name, price, description, imgUrl, category} = req.body;
     let nuevoProducto = new product(id, name, price, category, description, imgUrl);
@@ -27,7 +28,7 @@ const saveProduct = async (req, res) => {
     }
 }
 
-const getNextId = async (req, res) => {
+const getNextId = async (req:Request, res:Response) => {
     let id = await shop.nextId();
     res.send(`<h1>${id}</h1>`);
 }
