@@ -3,15 +3,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon build/index.js",
+    "copyfiles": "cp src/views /build; cp src/public /build",
+    "build": "tsc --watch --preserveWatchOutput",
+  "dev": "concurrently \"npm run build\" \"npm run copyfiles\" \"npm start\""
   },
   "license": "MIT",
   "dependencies": {
+    "@types/express": "^4.17.6",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.3"
   }
 }
