@@ -55,9 +55,39 @@ const postDeleteProduct = async (req, res) => {
     res.redirect('/');
 }
 
-// 5. Crear el controlador para mostrar una vista para todos los productos que cumplan con el criterio de busqueda
-// 6. Crear el controlador para mostrar el detalle de la vista
+const getProductDetail = async (req, res) => {
+    try{
+        let {name, description, price, category, imgUrl} = await shop.getProductById(req.params.id);
+        res.render('detail-product', {name, description, price, category, imgUrl});
+    }catch(error){
+        console.log(error);
+    }
+}
 
+const getProductsByS = async (req, res) => {
+    try{
+        console.log(req.query);
+        let s = req.query.s;
+        let products = await shop.getAll();
+        products = products.filter(product => searchFilter(product, s) );
+        res.render('search', {products});
+    }catch(error){
+        console.log(error);
+    }
+}
+
+const searchFilter = (product, s) => {
+    let props = Object.values(product);
+    let result = false;
+    props.forEach(p => {
+        if(typeof p === 'string' && p.substring(1, p.length) === s){
+            result = true;
+        }else if(p === s){
+            result = true;
+        }
+    });
+    return result;
+}
 
 module.exports = {
     getProducts,
@@ -66,5 +96,7 @@ module.exports = {
     updateProduct,
     saveProduct,
     postDeleteProduct,
-    getNextId
+    getNextId,
+    getProductDetail, 
+    getProductsByS
 }
